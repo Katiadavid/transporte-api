@@ -5,13 +5,9 @@ import java.time.LocalDate;
 import com.transporte.model.enums.StatusViagem;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "viagem")
-@Getter @Setter @NoArgsConstructor
 public class Viagem {
 
     @Id
@@ -44,4 +40,21 @@ public class Viagem {
     @ManyToOne(optional = false)
     @JoinColumn(name = "matricula")
     private Veiculo veiculo;
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public StatusViagem getStatusViagem() { return statusViagem; }
+    public void setStatusViagem(StatusViagem statusViagem) { this.statusViagem = statusViagem; }
+    public LocalDate getDataPartida() { return dataPartida; }
+    public void setDataPartida(LocalDate dataPartida) { this.dataPartida = dataPartida; }
+    public String getHoraPartida() { return horaPartida; }
+    public void setHoraPartida(String horaPartida) { this.horaPartida = horaPartida; }
+    public String getHoraChegada() { return horaChegada; }
+    public void setHoraChegada(String horaChegada) { this.horaChegada = horaChegada; }
+    public String getObservacoes() { return observacoes; }
+    public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
+    public Rota getRota() { return rota; }
+    public void setRota(Rota rota) { this.rota = rota; }
+    public Veiculo getVeiculo() { return veiculo; }
+    public void setVeiculo(Veiculo veiculo) { this.veiculo = veiculo; }
 }

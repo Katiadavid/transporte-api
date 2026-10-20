@@ -7,13 +7,9 @@ import com.transporte.model.enums.MetodoPagamento;
 import com.transporte.model.enums.StatusBilhete;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "bilhete")
-@Getter @Setter @NoArgsConstructor
 public class Bilhete {
 
     @Id
@@ -52,4 +48,25 @@ public class Bilhete {
     @ManyToOne(optional = false)
     @JoinColumn(name = "IdV")
     private Viagem viagem;
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public String getHoraCompra() { return horaCompra; }
+    public void setHoraCompra(String horaCompra) { this.horaCompra = horaCompra; }
+    public MetodoPagamento getMetodoPagamento() { return metodoPagamento; }
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) { this.metodoPagamento = metodoPagamento; }
+    public BigDecimal getPrecoPago() { return precoPago; }
+    public void setPrecoPago(BigDecimal precoPago) { this.precoPago = precoPago; }
+    public Integer getNumeroAssento() { return numeroAssento; }
+    public void setNumeroAssento(Integer numeroAssento) { this.numeroAssento = numeroAssento; }
+    public StatusBilhete getStatusBilhete() { return statusBilhete; }
+    public void setStatusBilhete(StatusBilhete statusBilhete) { this.statusBilhete = statusBilhete; }
+    public LocalDate getDataValidade() { return dataValidade; }
+    public void setDataValidade(LocalDate dataValidade) { this.dataValidade = dataValidade; }
+    public LocalDate getDataCompra() { return dataCompra; }
+    public void setDataCompra(LocalDate dataCompra) { this.dataCompra = dataCompra; }
+    public Passageiro getPassageiro() { return passageiro; }
+    public void setPassageiro(Passageiro passageiro) { this.passageiro = passageiro; }
+    public Viagem getViagem() { return viagem; }
+    public void setViagem(Viagem viagem) { this.viagem = viagem; }
 }

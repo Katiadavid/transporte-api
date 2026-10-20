@@ -1,3 +1,7 @@
+
+CREATE DATABASE transporte CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE transporte;
+
 CREATE TABLE passageiro (
                             IdP              INT AUTO_INCREMENT PRIMARY KEY,
                             nuit             VARCHAR(9)   NOT NULL,
@@ -106,8 +110,8 @@ CREATE TABLE motorista_veiculo (
                                    IdM        INT         NOT NULL,
                                    matricula  VARCHAR(15) NOT NULL,
                                    PRIMARY KEY (IdM, matricula),
-                                   CONSTRAINT fk_mv_motorista FOREIGN KEY (IdM)        REFERENCES motorista (IdM)        ON DELETE CASCADE ON UPDATE CASCADE,
-                                   CONSTRAINT fk_mv_veiculo   FOREIGN KEY (matricula)  REFERENCES veiculo (matricula)    ON DELETE CASCADE ON UPDATE CASCADE,
+                                   CONSTRAINT fk_mv_motorista FOREIGN KEY (IdM)       REFERENCES motorista (IdM)     ON DELETE CASCADE ON UPDATE CASCADE,
+                                   CONSTRAINT fk_mv_veiculo   FOREIGN KEY (matricula) REFERENCES veiculo (matricula) ON DELETE CASCADE ON UPDATE CASCADE,
                                    INDEX idx_mv_veiculo (matricula)
 ) ENGINE=InnoDB;
 
@@ -157,15 +161,10 @@ CREATE TABLE bilhete (
 ) ENGINE=InnoDB;
 
 CREATE VIEW v_ocupacao_viagem AS
-SELECT v.IdV,
-       r.origem,
-       r.destino,
-       v.data_partida,
-       v.hora_partida,
-       v.matricula,
+SELECT v.IdV, r.origem, r.destino, v.data_partida, v.hora_partida, v.matricula,
        m.capacidade_max,
-       COUNT(b.IdB)                        AS assentos_ocupados,
-       m.capacidade_max - COUNT(b.IdB)     AS assentos_livres
+       COUNT(b.IdB)                    AS assentos_ocupados,
+       m.capacidade_max - COUNT(b.IdB) AS assentos_livres
 FROM viagem v
          JOIN rota r            ON r.IdR = v.IdR
          JOIN veiculo ve        ON ve.matricula = v.matricula

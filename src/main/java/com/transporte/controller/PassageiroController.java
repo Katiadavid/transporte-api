@@ -12,14 +12,16 @@ import com.transporte.dto.PassageiroDto.Response;
 import com.transporte.service.PassageiroService;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/passageiros")
-@RequiredArgsConstructor
 public class PassageiroController {
 
     private final PassageiroService service;
+
+    public PassageiroController(PassageiroService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public Page<Response> listar(@RequestParam(required = false) String q,

@@ -1,13 +1,9 @@
 package com.transporte.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "mercadoria")
-@Getter @Setter @NoArgsConstructor
 public class Mercadoria {
 
     @Id
@@ -24,4 +20,13 @@ public class Mercadoria {
     @ManyToOne(optional = false)
     @JoinColumn(name = "IdP")
     private Passageiro passageiro;
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public Double getPeso() { return peso; }
+    public void setPeso(Double peso) { this.peso = peso; }
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+    public Passageiro getPassageiro() { return passageiro; }
+    public void setPassageiro(Passageiro passageiro) { this.passageiro = passageiro; }
 }

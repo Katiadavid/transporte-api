@@ -15,14 +15,16 @@ import com.transporte.model.enums.StatusViagem;
 import com.transporte.service.ViagemService;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/viagens")
-@RequiredArgsConstructor
 public class ViagemController {
 
     private final ViagemService service;
+
+    public ViagemController(ViagemService service) {
+        this.service = service;
+    }
 
     /** GET /api/viagens?origem=Maputo&destino=Xai&data=2026-10-20 */
     @GetMapping

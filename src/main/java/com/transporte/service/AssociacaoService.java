@@ -108,5 +108,6 @@ public class AssociacaoService {
                 .orElseThrow(() -> ApiException.notFound("Veículo não encontrado"));
         if (v.getStatusVeiculo() != StatusVeiculo.ATIVO) throw ApiException.conflict("Veículo não está ativo");
         return v;
+
     }
 }

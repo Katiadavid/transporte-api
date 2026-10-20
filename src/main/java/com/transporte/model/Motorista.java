@@ -7,20 +7,13 @@ import java.util.Set;
 import com.transporte.model.enums.StatusMotorista;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "motorista")
-@Getter @Setter @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Motorista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     @Column(name = "IdM")
     private Integer id;
 
@@ -53,4 +46,35 @@ public class Motorista {
             joinColumns = @JoinColumn(name = "IdM"),
             inverseJoinColumns = @JoinColumn(name = "matricula"))
     private Set<Veiculo> veiculos = new HashSet<>();
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public LocalDate getDataContratacao() { return dataContratacao; }
+    public void setDataContratacao(LocalDate dataContratacao) { this.dataContratacao = dataContratacao; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getCartaDeConducao() { return cartaDeConducao; }
+    public void setCartaDeConducao(String cartaDeConducao) { this.cartaDeConducao = cartaDeConducao; }
+    public LocalDate getDataValidadeCarta() { return dataValidadeCarta; }
+    public void setDataValidadeCarta(LocalDate dataValidadeCarta) { this.dataValidadeCarta = dataValidadeCarta; }
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public StatusMotorista getStatusMotorista() { return statusMotorista; }
+    public void setStatusMotorista(StatusMotorista statusMotorista) { this.statusMotorista = statusMotorista; }
+    public Set<String> getEnderecos() { return enderecos; }
+    public void setEnderecos(Set<String> enderecos) { this.enderecos = enderecos; }
+    public Set<Veiculo> getVeiculos() { return veiculos; }
+    public void setVeiculos(Set<Veiculo> veiculos) { this.veiculos = veiculos; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Motorista other)) return false;
+        return id != null && id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31; // estável mesmo antes de o id ser gerado
+    }
 }

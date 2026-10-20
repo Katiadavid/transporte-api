@@ -7,13 +7,9 @@ import java.util.Set;
 import com.transporte.model.enums.DiaSemana;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "rota")
-@Getter @Setter @NoArgsConstructor
 public class Rota {
 
     @Id
@@ -54,4 +50,23 @@ public class Rota {
             joinColumns = @JoinColumn(name = "IdR"),
             inverseJoinColumns = @JoinColumn(name = "matricula"))
     private Set<Veiculo> veiculos = new HashSet<>();
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public String getOrigem() { return origem; }
+    public void setOrigem(String origem) { this.origem = origem; }
+    public String getDestino() { return destino; }
+    public void setDestino(String destino) { this.destino = destino; }
+    public Integer getDuracaoEstimada() { return duracaoEstimada; }
+    public void setDuracaoEstimada(Integer duracaoEstimada) { this.duracaoEstimada = duracaoEstimada; }
+    public BigDecimal getPrecoBase() { return precoBase; }
+    public void setPrecoBase(BigDecimal precoBase) { this.precoBase = precoBase; }
+    public Double getDistanciaKm() { return distanciaKm; }
+    public void setDistanciaKm(Double distanciaKm) { this.distanciaKm = distanciaKm; }
+    public Set<DiaSemana> getDiasOperacao() { return diasOperacao; }
+    public void setDiasOperacao(Set<DiaSemana> diasOperacao) { this.diasOperacao = diasOperacao; }
+    public Set<Motorista> getMotoristas() { return motoristas; }
+    public void setMotoristas(Set<Motorista> motoristas) { this.motoristas = motoristas; }
+    public Set<Veiculo> getVeiculos() { return veiculos; }
+    public void setVeiculos(Set<Veiculo> veiculos) { this.veiculos = veiculos; }
 }

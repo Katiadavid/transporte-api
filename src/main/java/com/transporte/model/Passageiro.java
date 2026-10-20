@@ -7,13 +7,9 @@ import java.util.Set;
 import com.transporte.model.enums.TipoPassageiro;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "passageiro")
-@Getter @Setter @NoArgsConstructor
 public class Passageiro {
 
     @Id
@@ -41,4 +37,19 @@ public class Passageiro {
     @CollectionTable(name = "passageiro_endereco", joinColumns = @JoinColumn(name = "IdP"))
     @Column(name = "endereco", length = 200)
     private Set<String> enderecos = new HashSet<>();
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public String getNuit() { return nuit; }
+    public void setNuit(String nuit) { this.nuit = nuit; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public TipoPassageiro getTipoPassageiro() { return tipoPassageiro; }
+    public void setTipoPassageiro(TipoPassageiro tipoPassageiro) { this.tipoPassageiro = tipoPassageiro; }
+    public LocalDate getDataNascimento() { return dataNascimento; }
+    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+    public Set<String> getEnderecos() { return enderecos; }
+    public void setEnderecos(Set<String> enderecos) { this.enderecos = enderecos; }
 }
