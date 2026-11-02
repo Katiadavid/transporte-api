@@ -1,8 +1,7 @@
-DROP DATABASE IF EXISTS transrapida;
-CREATE DATABASE transrapida CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE transrapida;
+DROP DATABASE IF EXISTS Transporte;
+CREATE DATABASE Transporte CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE Transporte;
 
--- 1. TABELAS
 CREATE TABLE Passageiro (
                             IdP INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                             NUIT VARCHAR(20) NOT NULL UNIQUE,
@@ -152,7 +151,7 @@ CREATE TABLE Encomenda (
                            INDEX idx_encomenda_viagem (IdV), INDEX idx_encomenda_estado (estadoEncomenda, estadoPagamento)
 ) ENGINE=InnoDB;
 
--- 2. TRIGGERS
+
 DELIMITER $$
 CREATE TRIGGER trg_bilhete_bi BEFORE INSERT ON Bilhete FOR EACH ROW
 BEGIN
@@ -216,7 +215,6 @@ BEGIN
     END IF;
 END$$
 
--- 3. PROCEDIMENTOS ARMAZENADOS
 CREATE PROCEDURE sp_EmitirBilhete(
     IN p_IdP INT UNSIGNED, IN p_IdV INT UNSIGNED,
     IN p_NumeroAssento SMALLINT UNSIGNED, IN p_PrecoPago DECIMAL(10,2),
@@ -271,7 +269,6 @@ BEGIN
 END$$
 DELIMITER ;
 
--- 4. VISTAS
 CREATE VIEW vw_ViagensDetalhadas AS
 SELECT v.IdV,v.origem,v.destino,v.Data_Partida,v.Hora_Partida,v.Data_Chegada,v.Hora_Chegada,
        v.Status_Viagem,r.Distancia_KM,r.Duracao_Estimada,r.Preco_Base,ve.matricula,
